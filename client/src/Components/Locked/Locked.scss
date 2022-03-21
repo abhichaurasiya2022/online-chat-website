@@ -1,0 +1,14 @@
+.lockedContainer {
+  font-size: 3rem;
+  height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@media screen and (max-width: 860px) {
+  .lockedContainer {
+    height: 50vh;
+  }
+}
