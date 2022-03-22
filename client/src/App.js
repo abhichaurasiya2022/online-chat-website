@@ -431,8 +431,8 @@ function App() {
 
   let landingHTML = (
     <>
-      <Navigation online={users.length} />
-      <main>
+
+
         <div className="mainContainer">
           {isLoading && <Spinner status={status} />}
           {(
@@ -447,9 +447,9 @@ function App() {
                     onChange={(e) => setInputText(e.target.value)}
                     placeholder="Write something..."
                   />
-                  <i className="attachmentButton" aria-hidden="true">
+        {      /*    <i className="attachmentButton" aria-hidden="true">
                     <FaPhotoVideo />
-                  </i>
+                  </i>*/}
                   {isOnline && (
                     <button className="chatButton" type="submit">
                       Send
@@ -473,7 +473,7 @@ function App() {
             </div>
           )}
         </div>
-      </main>
+
     </>
   );
 
@@ -488,6 +488,8 @@ function App() {
         >
           {PartnerVideo}
         </div>
+
+        {!isFullScreen && <span>{landingHTML}</span>}
         <div
           className={
             "videoContainer userVideoContainer " +
@@ -509,7 +511,6 @@ function App() {
         </div>
       </span>
 
-      {!isFullScreen && <span>{landingHTML}</span>}
     </>
   );
 }

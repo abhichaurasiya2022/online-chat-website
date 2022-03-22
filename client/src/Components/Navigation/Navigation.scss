@@ -10,7 +10,10 @@
   justify-content: space-between;
   align-items: center;
   height: 70px;
+  width: 50px;
+  border: 1px solid red;
   display: flex;
+  float: right;
 }
 
 .headerLogo {
@@ -30,13 +33,13 @@
   font-weight: 500;
   font-size: 3rem;
   color: $primary-color;
-  flex: 50%; 
+  flex: 50%;
 }
 
 .onlineText {
   display: flow-root;
   text-align: right;
-  flex: 50%; 
+  flex: 50%;
 }
 
 .onlineIcon {
@@ -87,7 +90,7 @@
 
     height: 30px;
   }
-  
+
   .headerContainer {
     height: 30px;
   }

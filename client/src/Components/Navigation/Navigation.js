@@ -4,7 +4,16 @@ import { FaUser } from "react-icons/fa";
 
 const Navigation = (props) => {
   return (
-    <header className="dropShadow">
+
+        <div className="headerContainer">
+        Hello
+        </div>
+
+
+  );
+};
+export default Navigation;
+{/*    <header className="dropShadow">
       <div className="headerContainer">
         <div className="headerLogo">
           <div className="logoText">Smishy</div>
@@ -15,7 +24,4 @@ const Navigation = (props) => {
           </div>
         </div>
       </div>
-    </header>
-  );
-};
-export default Navigation;
+    </header>*/}
