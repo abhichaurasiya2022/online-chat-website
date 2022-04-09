@@ -63,6 +63,20 @@ io.on("connection", (socket) => {
     });
   });
 
+  socket.on("updateGrid", (data) => {
+    socket.emit("historyUpdated", {
+      historyPoint: data.historyPoint,
+      squares: data.squares,
+      setStepNumber: data.setStepNumber,
+    });
+
+    io.to(data.peerId).emit("receiveHistory", {
+      historyPoint: data.historyPoint,
+      squares: data.squares,
+      setStepNumber: data.setStepNumber,
+    });
+  });
+
   socket.on("findPartner", (data) => {
     viablePartner = _.find(queue, u => {
       return u.id !== socket.id && u.onlyChat === data.onlyChat

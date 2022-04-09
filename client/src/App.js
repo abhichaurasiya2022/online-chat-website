@@ -53,9 +53,15 @@ function App() {
     if (winner || squares[i]) return;
     // select square
     squares[i] = xO;
-    setHistory([...historyPoint, squares]);
-    setStepNumber(historyPoint.length);
+    socket.current.emit("updateGrid", {
+      historyPoint: historyPoint,
+      squares: squares,
+      setStepNumber: setStepNumber,
+      peerId: partner,
+    });
+    
     setXisNext(!xIsNext);
+    
   };
 /************/
   const stringStr = ischanging;
@@ -91,6 +97,7 @@ function App() {
       setYourID(id);
     });
 
+    
 
     socket.current.on("allUsers", (users) => {
       setUsers(users);
@@ -100,8 +107,18 @@ function App() {
       setMessages((m) => [...m, { type: "you", text: data.message }]);
     });
 
+      socket.current.on("historyUpdated", (data) => {
+        setHistory([...data.historyPoint, data.squares]);
+        setStepNumber(data.historyPoint.length);
+      });
+
     socket.current.on("receiveMessage", (data) => {
       setMessages((m) => [...m, { type: "partner", text: data.message }]);
+    });
+
+    socket.current.on("receiveHistory", (data) => {
+      setHistory([...data.historyPoint, data.squares]);
+      setStepNumber(data.historyPoint.length);
     });
 
     socket.current.on("peer", (data) => {
@@ -536,6 +553,7 @@ function App() {
           {UserVideo}
         </div>
         <div className="gameContainer">
+          
           <TicTacToe>
             {children}
            </TicTacToe>

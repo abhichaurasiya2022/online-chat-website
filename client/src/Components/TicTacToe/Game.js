@@ -24,8 +24,9 @@ const Game = ({ children }) => {
 
   return (
     <>
+    <h3>{"You : "}!</h3>
     <h3>{children.winner ? "Winner: " + children.winner : "Next Player: " + children.xO}</h3>
-    <h1>{children.var12}</h1>
+    
       <Board squares={children.history[children.stepNumber]} onClick={children.handleClick} />
       <div className="info-wrapper">
 
