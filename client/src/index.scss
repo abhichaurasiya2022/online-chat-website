@@ -223,7 +223,13 @@ body {
     background: $primary-color-background;
   }
 }
-
+.gameContainer{
+  position: absolute;
+  top: 0;
+  left: 25vw;
+  width: 75vw;
+  height: count(100vh -70px);
+}
 @media screen and (min-width: 861px) {
 }
 

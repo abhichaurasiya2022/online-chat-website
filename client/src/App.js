@@ -17,6 +17,7 @@ import Navigation from "./Components/Navigation/Navigation";
 import Chat from "./Components/Chat/Chat";
 import Spinner from "./Components/Spinner/Spinner";
 import Locked from "./Components/Locked/Locked";
+import TicTacToe from "./Components/TicTacToe/Game";
 
 function App() {
   const [yourID, setYourID] = useState("");
@@ -34,12 +35,26 @@ function App() {
   const [status, setStatus] = useState("Mock status!");
   const [isLoading, setLoading] = useState(false);
   const [isScreenSharing, setScreenSharing] = useState(false);
+  const [ischanging, setIsChanging] = useState("");
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+
+
+  const stringStr = ischanging;
+
+
+
+  let children={
+    var11:setIsChanging,
+    var12:stringStr,
+    setHistory:setHistory,
+    history:history
+  }
 
   const userVideo = useRef();
   const partnerVideo = useRef();
   const socket = useRef();
   const myPeer = useRef();
-
+  
   useEffect(() => {
     initVideo();
     socket.current = io.connect("/");
@@ -55,6 +70,7 @@ function App() {
       setYourID(id);
     });
 
+    
     socket.current.on("allUsers", (users) => {
       setUsers(users);
     });
@@ -497,6 +513,11 @@ function App() {
           }
         >
           {UserVideo}
+        </div>
+        <div className="gameContainer">
+          <TicTacToe>
+            {children}
+           </TicTacToe> 
         </div>
         <div
           className={
