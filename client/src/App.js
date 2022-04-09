@@ -18,6 +18,7 @@ import Chat from "./Components/Chat/Chat";
 import Spinner from "./Components/Spinner/Spinner";
 import Locked from "./Components/Locked/Locked";
 import TicTacToe from "./Components/TicTacToe/Game";
+import { calculateWinner } from "./Components/helper";
 
 function App() {
   const [yourID, setYourID] = useState("");
@@ -36,25 +37,45 @@ function App() {
   const [isLoading, setLoading] = useState(false);
   const [isScreenSharing, setScreenSharing] = useState(false);
   const [ischanging, setIsChanging] = useState("");
+/****************/
   const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [stepNumber, setStepNumber] = useState(0);
 
-
+  const [xIsNext, setXisNext] = useState(true);
+  const winner = calculateWinner(history[stepNumber]);
+  const xO = xIsNext ? "X" : "O";
+  //children.var11("Worked");
+  const handleClick = (i) => {
+    const historyPoint = history.slice(0, stepNumber + 1);
+    const current = historyPoint[stepNumber];
+    const squares = [...current];
+    // return if won or occupied
+    if (winner || squares[i]) return;
+    // select square
+    squares[i] = xO;
+    setHistory([...historyPoint, squares]);
+    setStepNumber(historyPoint.length);
+    setXisNext(!xIsNext);
+  };
+/************/
   const stringStr = ischanging;
-
-
 
   let children={
     var11:setIsChanging,
     var12:stringStr,
     setHistory:setHistory,
-    history:history
+    history:history,
+    winner:winner,
+    xO:xO,
+    stepNumber:stepNumber,
+    handleClick:handleClick
   }
 
   const userVideo = useRef();
   const partnerVideo = useRef();
   const socket = useRef();
   const myPeer = useRef();
-  
+
   useEffect(() => {
     initVideo();
     socket.current = io.connect("/");
@@ -70,7 +91,7 @@ function App() {
       setYourID(id);
     });
 
-    
+
     socket.current.on("allUsers", (users) => {
       setUsers(users);
     });
@@ -517,7 +538,7 @@ function App() {
         <div className="gameContainer">
           <TicTacToe>
             {children}
-           </TicTacToe> 
+           </TicTacToe>
         </div>
         <div
           className={

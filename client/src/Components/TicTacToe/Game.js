@@ -3,7 +3,7 @@ import { calculateWinner } from "../helper";
 import Board from "./Board";
 import './Game.scss';
 const Game = ({ children }) => {
-  
+  /*
   const [stepNumber, setStepNumber] = useState(0);
   const [xIsNext, setXisNext] = useState(true);
   const winner = calculateWinner(children.history[stepNumber]);
@@ -20,13 +20,13 @@ const Game = ({ children }) => {
     children.setHistory([...historyPoint, squares]);
     setStepNumber(historyPoint.length);
     setXisNext(!xIsNext);
-  };
+  };*/
 
   return (
     <>
-    <h3>{winner ? "Winner: " + winner : "Next Player: " + xO}</h3>
+    <h3>{children.winner ? "Winner: " + children.winner : "Next Player: " + children.xO}</h3>
     <h1>{children.var12}</h1>
-      <Board squares={children.history[stepNumber]} onClick={handleClick} />
+      <Board squares={children.history[children.stepNumber]} onClick={children.handleClick} />
       <div className="info-wrapper">
 
       </div>
