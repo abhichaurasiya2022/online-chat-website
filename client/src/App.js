@@ -37,13 +37,17 @@ function App() {
   const [isLoading, setLoading] = useState(false);
   const [isScreenSharing, setScreenSharing] = useState(false);
   const [ischanging, setIsChanging] = useState("");
+  const [playerX, setPlayerX] = useState("");
+  const [playerY, setPlayerY] = useState("");
 /****************/
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [stepNumber, setStepNumber] = useState(0);
-
+  const [player,setPlayer] = useState("");
   const [xIsNext, setXisNext] = useState(true);
   const winner = calculateWinner(history[stepNumber]);
+  
   const xO = xIsNext ? "X" : "O";
+  const [xoValue, setxoValue] = useState("");
   //children.var11("Worked");
   const handleClick = (i) => {
     const historyPoint = history.slice(0, stepNumber + 1);
@@ -53,15 +57,17 @@ function App() {
     if (winner || squares[i]) return;
     // select square
     squares[i] = xO;
+    setXisNext(xIsNext);
     socket.current.emit("updateGrid", {
       historyPoint: historyPoint,
       squares: squares,
       setStepNumber: setStepNumber,
       peerId: partner,
+      xIsNext: xIsNext,
     });
+
     
-    setXisNext(!xIsNext);
-    
+
   };
 /************/
   const stringStr = ischanging;
@@ -74,13 +80,18 @@ function App() {
     winner:winner,
     xO:xO,
     stepNumber:stepNumber,
-    handleClick:handleClick
+    handleClick:handleClick,
+    yourID:xoValue,
+    playerX: playerX,
+    player:playerX,
   }
 
   const userVideo = useRef();
   const partnerVideo = useRef();
   const socket = useRef();
   const myPeer = useRef();
+
+  
 
   useEffect(() => {
     initVideo();
@@ -93,8 +104,10 @@ function App() {
       }
     };
 
-    socket.current.on("yourID", (id) => {
-      setYourID(id);
+    socket.current.on("yourID", (data) => {
+      setYourID(data.id);
+      setxoValue(data.pivot);
+      
     });
 
     
@@ -110,6 +123,13 @@ function App() {
       socket.current.on("historyUpdated", (data) => {
         setHistory([...data.historyPoint, data.squares]);
         setStepNumber(data.historyPoint.length);
+       if (data.xIsNext) {
+        setXisNext(!xIsNext);
+       }
+        else{
+          setXisNext(xIsNext);
+        }
+
       });
 
     socket.current.on("receiveMessage", (data) => {
@@ -119,12 +139,19 @@ function App() {
     socket.current.on("receiveHistory", (data) => {
       setHistory([...data.historyPoint, data.squares]);
       setStepNumber(data.historyPoint.length);
+      if (data.xIsNext) {
+        setXisNext(!xIsNext);
+       }
+        else{
+          setXisNext(xIsNext);
+        }
+      
     });
 
     socket.current.on("peer", (data) => {
       setLoading(true);
       setStatus("Partner found!");
-
+      
       socket.current.off("signal");
 
       setPartner(data.peerId);
@@ -553,7 +580,7 @@ function App() {
           {UserVideo}
         </div>
         <div className="gameContainer">
-          
+
           <TicTacToe>
             {children}
            </TicTacToe>

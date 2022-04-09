@@ -24,10 +24,11 @@ const Game = ({ children }) => {
 
   return (
     <>
-    <h3>{"You : "}!</h3>
+    <h3>{"You :" + children.yourID}!</h3>
+ 
     <h3>{children.winner ? "Winner: " + children.winner : "Next Player: " + children.xO}</h3>
     
-      <Board squares={children.history[children.stepNumber]} onClick={children.handleClick} />
+      <Board squares={children.history[children.stepNumber]} onClick={children.handleClick} isMe = {children.yourID} turn = {children.xO} />
       <div className="info-wrapper">
 
       </div>

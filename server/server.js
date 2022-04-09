@@ -20,9 +20,30 @@ app.use(express.static("./client/build"));
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 });
+let i =0;
+function abc(){
+  console.log("Worked");
+  if (i==0) {
+    i=1;
+    return;
+  }
+  if (i==1) {
+    i=0;
+    return;
+  }
+  if (i>1) {
+    i=0;
+    return;
+  }
+  if (i<0) {
+    i=0;
+    return;
+  }
+}
 
 let users = [];
 let queue = [];
+const players = ['X','O'];
 
 io.on("connection", (socket) => {
   let isBusy = false;
@@ -30,7 +51,10 @@ io.on("connection", (socket) => {
   if (!_.includes(users, socket.id)) {
     users.push(socket.id);
   }
-  socket.emit("yourID", socket.id);
+  socket.emit("yourID", {
+    id:socket.id,
+    pivot:players[i],
+  },abc() ) ;
   io.sockets.emit("allUsers", users);
 
   socket.on("disconnect", () => {
@@ -68,12 +92,14 @@ io.on("connection", (socket) => {
       historyPoint: data.historyPoint,
       squares: data.squares,
       setStepNumber: data.setStepNumber,
+      xIsNext: data.xIsNext,
     });
 
     io.to(data.peerId).emit("receiveHistory", {
       historyPoint: data.historyPoint,
       squares: data.squares,
       setStepNumber: data.setStepNumber,
+      xIsNext: data.xIsNext,
     });
   });
 
