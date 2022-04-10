@@ -7,10 +7,11 @@
   grid-template: repeat(3, 1fr) / repeat(3, 1fr);
   gap: 1rem;
   position: absolute;
-  left:12vw;
-  width: 50vw;
+  left:19vw;
+  width: 35vw;
   right: 25vw;
-  top: 5vh;
+  top: 15vh;
+  bottom: 15vh;
 }
 
 .squares {
@@ -50,4 +51,59 @@ li {
   cursor: pointer;
   padding: 0.5rem;
   margin: 0.5rem 1rem;
+}
+@media screen and (max-height: 728px) {
+
+.board{
+
+top: 5vh;
+bottom: 5vh;
+
+
+}
+}
+
+@media screen and (max-width: 320px){
+
+.board{
+  position:fixed;
+width: 50%;
+left: 40%;
+top: 45%;
+height: 26%;
+}
+h3{
+  font-size: 0.90rem;
+}
+.squares{
+  font-size: 2.5rem;
+}
+}
+
+@media screen and (max-width: 375px) and (min-width:321px){
+
+.board{
+  position:fixed;
+width: 47%;
+left: 45%;
+top: 45%;
+height: 26%;
+}
+.squares{
+  font-size: 3.5rem;
+}
+}
+
+@media screen and (max-width: 425px) and (min-width:376px){
+
+.board{
+  position:fixed;
+width: 47%;
+left: 45%;
+top: 45%;
+height: 26%;
+}
+.squares{
+  font-size: 3.25rem;
+}
 }

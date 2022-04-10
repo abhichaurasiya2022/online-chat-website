@@ -72,7 +72,7 @@ body {
   width: 25vw;
   height: calc(30%);
   z-index: default;
-  border: 1px solid red;
+  //border: 1px solid red;
 }
 
 .videoContainer {
@@ -88,7 +88,7 @@ body {
   top: calc(65.20%);
   right: default;
   width: 25vw;
-  height: calc(35%);
+  height: calc(34%);
   z-index: default;
 }
 
@@ -135,10 +135,10 @@ body {
   justify-content: space-around;
   height: 70px;
   z-index: 999;
-  width: 74vw;
+  width: 75vw;
   display: flex;
   background-color: black;
-  border: 1px solid $primary-color;
+//  border: 1px solid $primary-color;
 }
 
 .controlsFull {
@@ -234,14 +234,159 @@ body {
 @media screen and (min-width: 861px) {
 }
 
+@media screen and (max-width: 320px){
+
+.mainContainer{
+  position: fixed;
+  width: 100%;
+  height: 25%;
+  top: 75%;
+  //border-bottom: 5px solid blue;
+}
+.chatInput{
+  width: 31%;
+  
+}
+
+.gameContainer{
+  position: fixed;
+  top: 45%;
+  left: 0;
+  width: 100%;
+  height: 30%;
+//  border: 5px solid blue;
+}
+.videoContainer{
+  position: fixed;
+  width: 100%;
+  height: 45%;
+  top: 0;
+}
+.userVideoContainer{
+  height: 20%;
+  width: 31%;
+  left: 69%;
+  top: 0;
+}
+.partnerVideoContainer{
+  height: 45%;
+}
+.controlsContainer{
+  width: 100%;
+  //display: none;
+  top:calc(45% - 70px);
+  left: 0;
+}
+.partnerVideoContainer{
+
+}
+
+}
+@media screen and (max-width: 375px) and (min-width: 321px){
+
+.mainContainer{
+  position: fixed;
+  width: 100%;
+  height: 25%;
+  top: 75%;
+  //border-bottom: 5px solid blue;
+}
+.chatInput{
+  width: 41%;
+
+}
+
+.gameContainer{
+  position: fixed;
+  top: 45%;
+  left: 0;
+  width: 100%;
+  height: 30%;
+//  border: 5px solid blue;
+}
+.videoContainer{
+  position: fixed;
+  width: 100%;
+  height: 45%;
+  top: 0;
+}
+.userVideoContainer{
+  height: 20%;
+  width: 31%;
+  left: 69%;
+  top: 0;
+}
+.partnerVideoContainer{
+  height: 45%;
+}
+.controlsContainer{
+  width: 100%;
+  //display: none;
+  top:calc(45% - 70px);
+  left: 0;
+}
+.partnerVideoContainer{
+
+}
+
+}
+
+@media screen and (max-width: 425px) and (min-width : 376px){
+
+.mainContainer{
+  position: fixed;
+  width: 100%;
+  height: 25%;
+  top: 75%;
+  //border-bottom: 5px solid blue;
+}
+.chatInput{
+  width: 48%;
+}
+
+.gameContainer{
+  position: fixed;
+  top: 45%;
+  left: 0;
+  width: 100%;
+  height: 30%;
+//  border: 5px solid blue;
+}
+.videoContainer{
+  position: fixed;
+  width: 100%;
+  height: 45%;
+  top: 0;
+}
+.userVideoContainer{
+  height: 20%;
+  width: 31%;
+  left: 69%;
+  top: 0;
+}
+.partnerVideoContainer{
+  height: 45%;
+}
+.controlsContainer{
+  width: 100%;
+  //display: none;
+  top:calc(45% - 70px);
+  left: 0;
+}
+.partnerVideoContainer{
+
+}
+
+}
+/*
 @media screen and (max-width: 860px) {
   html {
     font-size: 16px;
   }
 
   .mainContainer {
-    margin-left: 0px;
-    margin-top: 50vh;
+  //  margin-left: 0px;
+  //  margin-top: 50vh;
   }
 
   .videoContainer {
@@ -326,3 +471,4 @@ body {
     font-size: 1rem;
   }
 }
+*/

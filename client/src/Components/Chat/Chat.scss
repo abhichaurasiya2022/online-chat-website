@@ -1,10 +1,11 @@
+@import "../../variables.scss";
 .chatBox {
   height: calc(23vh);
   overflow: auto;
   display: flex;
   flex-direction: column;
   padding-bottom: 10px;
-  border: 1px solid blue;
+  border: 1px solid $primary-color;
 }
 
 @media screen and (max-width: 860px) {
