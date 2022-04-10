@@ -1,15 +1,17 @@
 @import "../../variables.scss";
 
 .loading {
-  height: calc(100vh - 70px);
-  width: calc(65vw);
+
+  left: 44vw;
+  height: calc(30vh - 70px);
+  width: calc(37.5vw);
   font-size: 6rem;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   position: absolute;
-  background-color: transparent;
+  background-color: red;
   z-index: 4;
 
   font-family: "Great Vibes", cursive;
