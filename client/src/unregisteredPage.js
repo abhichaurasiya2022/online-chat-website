@@ -45,7 +45,7 @@ function App() {
   const [player,setPlayer] = useState("");
   const [xIsNext, setXisNext] = useState(true);
   const winner = calculateWinner(history[stepNumber], stepNumber);
-  
+
   const xO = xIsNext ? "X" : "O";
   const [xoValue, setxoValue] = useState("");
   //children.var11("Worked");
@@ -53,12 +53,12 @@ function App() {
     const historyPoint = history.slice(0, stepNumber + 1);
     const current = historyPoint[stepNumber];
     const squares = [...current];
-    
+
     // return if won or occupied
     if (winner || squares[i]) {
-      
+
       return;
-    } 
+    }
     // select square
     squares[i] = xO;
     setXisNext(xIsNext);
@@ -70,7 +70,7 @@ function App() {
       xIsNext: xIsNext,
     });
 
-  
+
 
   };
 /************/
@@ -107,7 +107,7 @@ const getReset = () =>{
   const socket = useRef();
   const myPeer = useRef();
 
-  
+
 
   useEffect(() => {
     initVideo();
@@ -123,10 +123,10 @@ const getReset = () =>{
     socket.current.on("yourID", (data) => {
       setYourID(data.id);
       setxoValue(data.pivot);
-      
+
     });
 
-    
+
 
     socket.current.on("allUsers", (users) => {
       setUsers(users);
@@ -166,7 +166,7 @@ const getReset = () =>{
         else{
           setXisNext(xIsNext);
         }
-      
+
     });
 
     socket.current.on("resetGridDoneIo", () => {
@@ -177,7 +177,7 @@ const getReset = () =>{
     socket.current.on("peer", (data) => {
       setLoading(true);
       setStatus("Partner found!");
-      
+
       socket.current.off("signal");
 
       setPartner(data.peerId);
