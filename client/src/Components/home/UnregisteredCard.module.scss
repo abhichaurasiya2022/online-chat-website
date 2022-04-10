@@ -2,7 +2,7 @@
     position: absolute;
     display: block;
     top: 20%;
-    left: 55%;
+    left: 52.5%;
     right: 5%;
     height: 55%;
     width: 40%;
@@ -17,10 +17,10 @@
     .discriptionUnregistered{
         color: white;
         font-family: 'Times New Roman', Times, serif;
-        font-size: 2.5vh;
+        font-size: 3.5vh;
     }
     .buttonTakeMeThere{
-    
+
         background-color: transparent;
         border: 1px solid white;
         border-radius: 0;
@@ -33,12 +33,12 @@
         margin-bottom: 5%;
         margin-right:30% ;
         margin-left: 30%;
-        
+
         &:hover{
             background-color: white;
             color: black;
 
         }
-      
+
     }
 }

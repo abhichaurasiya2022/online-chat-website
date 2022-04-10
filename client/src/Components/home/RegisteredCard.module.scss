@@ -2,7 +2,7 @@
     position: absolute;
     display: block;
     top: 20%;
-    left: 5%;
+    left: 2.5%;
     right: 5%;
     height: 55%;
     width: 40%;
@@ -14,11 +14,11 @@
         box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.726);
 
     }
-    
+
     .discriptionRegistered{
         color: white;
         font-family: 'Times New Roman', Times, serif;
-        font-size: 2.5vh;
+        font-size: 3.5vh;
     }
     .buttonLogin,.buttonSignup{
 
@@ -41,4 +41,17 @@
 
         }
     }
+}
+
+@media screen and (max-height: 728px){
+
+}
+@media screen and (max-width: 320px){
+
+}
+@media screen and (max-width: 375px) and (min-width:321px){
+
+}
+@media screen and (max-width: 425px) and (min-width:376px){
+
 }

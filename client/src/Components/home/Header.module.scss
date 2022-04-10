@@ -1,11 +1,12 @@
 .header{
     height: 80px;
     width: 100%;
-    padding: 20px;
-    opacity: 1;  
+    padding-top: 20px;
+
+    opacity: 1;
 }
 .headerCard{
-   
+
     opacity: 1;
     background-color: transparent;
     box-shadow:         0px 1px 6px 0px #ccc;
@@ -13,13 +14,13 @@
 .logoHeader{
     position: fixed;
     display: inline;
-    
+
 }
 .titleHeader{
     position: fixed;
     display: inline;
     height: 40px;
     font-size:25px;
-    padding-left: 25px;
+    padding-left: 55px;
     color: white;
 }
