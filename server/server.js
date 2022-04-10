@@ -21,8 +21,8 @@ app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 });
 let i =0;
-function abc(){
-  console.log("Worked");
+function tities(){
+
   if (i==0) {
     i=1;
     return;
@@ -54,7 +54,7 @@ io.on("connection", (socket) => {
   socket.emit("yourID", {
     id:socket.id,
     pivot:players[i],
-  },abc() ) ;
+  },tities() ) ;
   io.sockets.emit("allUsers", users);
 
   socket.on("disconnect", () => {
