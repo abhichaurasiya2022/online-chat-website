@@ -44,7 +44,7 @@ function App() {
   const [stepNumber, setStepNumber] = useState(0);
   const [player,setPlayer] = useState("");
   const [xIsNext, setXisNext] = useState(true);
-  const winner = calculateWinner(history[stepNumber]);
+  const winner = calculateWinner(history[stepNumber], stepNumber);
   
   const xO = xIsNext ? "X" : "O";
   const [xoValue, setxoValue] = useState("");
@@ -53,8 +53,12 @@ function App() {
     const historyPoint = history.slice(0, stepNumber + 1);
     const current = historyPoint[stepNumber];
     const squares = [...current];
+    
     // return if won or occupied
-    if (winner || squares[i]) return;
+    if (winner || squares[i]) {
+      
+      return;
+    } 
     // select square
     squares[i] = xO;
     setXisNext(xIsNext);
@@ -66,10 +70,21 @@ function App() {
       xIsNext: xIsNext,
     });
 
-    
+  
 
   };
 /************/
+
+
+
+
+const getReset = () =>{
+  socket.current.emit("resetGrid", {
+    peerId: partner,
+  });
+};
+
+
   const stringStr = ischanging;
 
   let children={
@@ -82,8 +97,9 @@ function App() {
     stepNumber:stepNumber,
     handleClick:handleClick,
     yourID:xoValue,
-    playerX: playerX,
+    playerX: stepNumber,
     player:playerX,
+    isLoading: partner,
   }
 
   const userVideo = useRef();
@@ -132,6 +148,11 @@ function App() {
 
       });
 
+      socket.current.on("resetGridDone", () => {
+        history.fill(null);
+        setStepNumber(0);
+      });
+
     socket.current.on("receiveMessage", (data) => {
       setMessages((m) => [...m, { type: "partner", text: data.message }]);
     });
@@ -146,6 +167,11 @@ function App() {
           setXisNext(xIsNext);
         }
       
+    });
+
+    socket.current.on("resetGridDoneIo", () => {
+      history.fill(null);
+      setStepNumber(0);
     });
 
     socket.current.on("peer", (data) => {
@@ -221,6 +247,8 @@ function App() {
 
       peer.on("close", () => {
         resetAppState();
+        getReset();
+        setPartner("");
       });
     });
   }, []);
@@ -580,7 +608,7 @@ function App() {
           {UserVideo}
         </div>
         <div className="gameContainer">
-
+          <button onClick={getReset}>ff</button>
           <TicTacToe>
             {children}
            </TicTacToe>

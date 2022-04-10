@@ -1,7 +1,9 @@
 import React from "react";
 import Square from "./Square";
 
-function art(squares, onClick, isMe, turn){
+function art(squares, onClick, isMe, turn, isLoading){
+  if (isLoading) {
+    
  if (isMe == turn) {
    return (
    <>
@@ -22,11 +24,21 @@ function art(squares, onClick, isMe, turn){
   )
  }
 }
+else {
+  return(
+    <>
+  {squares.map((square, i) => (
+    <Square key={i} value={square} />
+  ))}
+  </>
+  )
+}
+}
 
-const Board = ({ squares, onClick, isMe, turn }) => (
+const Board = ({ squares, onClick, isMe, turn , isLoading}) => (
 
   <div className="board">
-    {art(squares, onClick, isMe, turn)}
+    {art(squares, onClick, isMe, turn, isLoading)}
     
   </div>
 );

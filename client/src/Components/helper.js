@@ -1,4 +1,6 @@
-export function calculateWinner(squares) {
+
+
+export function calculateWinner(squares, stepNumber) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -9,11 +11,21 @@ export function calculateWinner(squares) {
     [0, 4, 8],
     [2, 4, 6]
   ];
+  let won = false;
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      won=true;
+      
+      return "Winner: "+squares[a];
+      
     }
+    
+    else if (stepNumber==9 && !won){
+      
+      return "Match Tie";
+    }
+    
   }
   return null;
 }

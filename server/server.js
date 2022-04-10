@@ -103,6 +103,12 @@ io.on("connection", (socket) => {
     });
   });
 
+
+  socket.on("resetGrid", (data) => {
+    socket.emit("resetGridDone");
+    io.to(data.peerId).emit("resetGridDoneIo");
+  });
+
   socket.on("findPartner", (data) => {
     viablePartner = _.find(queue, u => {
       return u.id !== socket.id && u.onlyChat === data.onlyChat

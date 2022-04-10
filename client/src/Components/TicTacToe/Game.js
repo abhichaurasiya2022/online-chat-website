@@ -22,13 +22,15 @@ const Game = ({ children }) => {
     setXisNext(!xIsNext);
   };*/
 
+  const [finalWinner, setFinalWinner]= useState("");
+
   return (
     <>
     <h3>{"You :" + children.yourID}!</h3>
- 
-    <h3>{children.winner ? "Winner: " + children.winner : "Next Player: " + children.xO}</h3>
     
-      <Board squares={children.history[children.stepNumber]} onClick={children.handleClick} isMe = {children.yourID} turn = {children.xO} />
+    <h3>{children.winner ?  children.winner : "Next Player: " + children.xO}</h3>
+    
+      <Board squares={children.history[children.stepNumber]} onClick={children.handleClick} isMe = {children.yourID} turn = {children.xO} isLoading = {children.isLoading}/>
       <div className="info-wrapper">
 
       </div>
