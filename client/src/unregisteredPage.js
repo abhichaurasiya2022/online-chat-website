@@ -19,7 +19,7 @@ import Spinner from "./Components/Spinner/Spinner";
 import Locked from "./Components/Locked/Locked";
 import TicTacToe from "./Components/TicTacToe/Game";
 import { calculateWinner } from "./Components/helper";
-
+console.log(window.innerWidth);
 function App() {
   const [yourID, setYourID] = useState("");
   const [users, setUsers] = useState([]);
@@ -48,6 +48,7 @@ function App() {
 
   const xO = xIsNext ? "X" : "O";
   const [xoValue, setxoValue] = useState("");
+
   //children.var11("Worked");
   const handleClick = (i) => {
     const historyPoint = history.slice(0, stepNumber + 1);
