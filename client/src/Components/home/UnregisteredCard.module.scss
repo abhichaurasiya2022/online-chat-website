@@ -4,7 +4,7 @@
     top: 20%;
     left: 52.5%;
     right: 5%;
-    height: 55%;
+    height: 50%;
     width: 40%;
     padding: 2.5%;
     background-color: transparent;
@@ -25,7 +25,7 @@
         border: 1px solid white;
         border-radius: 0;
         color: white;
-        font-size: 15px;
+        font-size: 16px;
         font-family: 'Times New Roman', Times, serif;
         width: 40%;
         height: 15%;
@@ -41,4 +41,84 @@
         }
 
     }
+}
+
+@media screen and (height: 768px){
+.unregisteredCard{
+  .discriptionUnregistered{
+    font-size: 3vh;
+
+  }
+  .buttonTakeMeThere{
+    width: 30%;
+    height: 13%;
+    margin-right:35% ;
+    margin-left: 35%;
+      font-size: 18px;
+  }
+}
+}
+@media screen and (max-width: 320px){
+.unregisteredCard{
+  top: 80%;
+  width: 80%;
+  left: 10%;
+  right: 10%;
+  padding: 0;
+  top: 75%;
+  .discriptionUnregistered{
+    font-size: 2vh;
+      padding: 2.5%;
+  }
+  .buttonTakeMeThere{
+    width: 70%;
+    height: 13%;
+    margin-right:15% ;
+    margin-left: 15%;
+      font-size: 18px;
+  }
+}
+}
+@media screen and (max-width: 375px) and (min-width:321px){
+  .unregisteredCard{
+    top: 80%;
+    width: 80%;
+    left: 10%;
+    right: 10%;
+    padding: 0;
+    top: 70%;
+    .discriptionUnregistered{
+      font-size: 2vh;
+        padding: 2.5%;
+    }
+    .buttonTakeMeThere{
+      width: 70%;
+      height: 13%;
+      margin-right:15% ;
+      margin-left: 15%;
+        font-size: 18px;
+    }
+  }
+}
+@media screen and (max-width: 425px) and (min-width:376px){
+  .unregisteredCard{
+    top: 80%;
+    width: 80%;
+    left: 10%;
+    right: 10%;
+    padding: 0;
+    height: 41%;
+    top: 58%;
+    .discriptionUnregistered{
+      font-size: 2vh;
+        padding: 2.5%;
+    }
+    .buttonTakeMeThere{
+      width: 70%;
+      height: 13%;
+      margin-right:15% ;
+      margin-left: 15%;
+        font-size: 18px;
+    }
+  }
 }

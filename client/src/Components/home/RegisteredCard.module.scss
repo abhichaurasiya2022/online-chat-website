@@ -4,7 +4,7 @@
     top: 20%;
     left: 2.5%;
     right: 5%;
-    height: 55%;
+    height: 50%;
     width: 40%;
     padding: 2.5%;
     background-color: transparent;
@@ -26,7 +26,7 @@
         border: 1px solid white;
         border-radius: 0;
         color: white;
-        font-size: 15px;
+        font-size: 16px;
         font-family: 'Times New Roman', Times, serif;
         width: 20%;
         height: 15%;
@@ -43,15 +43,79 @@
     }
 }
 
-@media screen and (max-height: 728px){
+@media screen and (height: 768px){
+.registeredCard{
+  .discriptionRegistered{
+    font-size: 3vh;
 
+  }
+  .buttonLogin,.buttonSignup{
+    width: 20%;
+    height: 13%;
+margin-right:15% ;
+    margin-left: 15%;
+      font-size: 18px;
+  }
+}
 }
 @media screen and (max-width: 320px){
-
+.registeredCard{
+  width: 80%;
+  right: 100%;
+  left: 10%;
+  padding: 0;
+  top: 15%;
+  .discriptionRegistered{
+    font-size: 2vh;
+  padding: 2.5%;
+  }
+  .buttonLogin,.buttonSignup{
+    width: 33%;
+    height: 13%;
+margin-right:8.5% ;
+    margin-left: 8.5%;
+      font-size: 18px;
+  }
+}
 }
 @media screen and (max-width: 375px) and (min-width:321px){
-
+  .registeredCard{
+    width: 80%;
+    right: 10%;
+    left: 10%;
+    padding: 0;
+    top: 16%;
+    .discriptionRegistered{
+      font-size: 2vh;
+      padding: 2.5%;
+    }
+    .buttonLogin,.buttonSignup{
+      width: 33%;
+      height: 13%;
+  margin-right:8.5% ;
+      margin-left: 8.5%;
+        font-size: 18px;
+    }
+  }
 }
 @media screen and (max-width: 425px) and (min-width:376px){
-
+  .registeredCard{
+    width: 80%;
+    right: 10%;
+    left: 10%;
+    padding: 0;
+    height: 42%;
+    top: 13%;
+    .discriptionRegistered{
+      font-size: 2vh;
+      padding: 2.5%;
+    }
+    .buttonLogin,.buttonSignup{
+      width: 33%;
+      height: 13%;
+  margin-right:8.5% ;
+      margin-left: 8.5%;
+        font-size: 18px;
+    }
+  }
 }
