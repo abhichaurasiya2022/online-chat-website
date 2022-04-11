@@ -544,7 +544,7 @@ const getReset = () =>{
 
 
         <div className="mainContainer">
-          {1 && <Spinner status={status} />}
+      
           {(
             <div>
               <Chat messages={messages} />
