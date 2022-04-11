@@ -4,6 +4,9 @@ import { BrowserRouter } from "react-router-dom";
 
 import './index.scss';
 import App from './unregisteredPage';
+import Login from './login';
+import Signup from './signup';
+import Forgot from './forgot';
 import Home from './Home';
 import Test from './test';
 import * as serviceWorker from './serviceWorker';
@@ -29,6 +32,9 @@ render (
 <Routes>
     <Route path="/" element={<Home />} />
     <Route path="unregisteredPage" element={<App />} />
+    <Route path="login" element={<Login />} />
+    <Route path="signup" element={<Signup />} />
+      <Route path="forgot" element={<Forgot />} />
     <Route path="test" element={<Test />} />
 
   </Routes>
