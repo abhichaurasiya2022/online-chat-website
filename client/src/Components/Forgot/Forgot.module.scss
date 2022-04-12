@@ -29,3 +29,22 @@
     @include InputField();
     color: blue;
 }
+.Button_Changepsw{
+  @include Button();
+
+width: 25%;
+margin-right:10% ;
+margin-left: 30%;
+}
+.Button_SignUp{
+  @include Button();
+
+width: 25%;
+margin-right:0% ;
+margin-left: 10%;
+}
+.otpclass{
+
+  @include InputField();
+
+}

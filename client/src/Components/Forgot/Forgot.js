@@ -27,7 +27,7 @@ const sendOtp = () =>{
     <input type="text" placeholder="Enter Email" name="email" className={Styles.EmailInputField} required></input>
     <button type="button" onClick={sendOtp} className={Styles.Button_SendOTP}>Variefy</button>
     </div>
-    <input type="text" placeholder="Enter OTP" name="number" id={Styles.otpField} className={otpclass} required></input>
+    <input type="text" placeholder="Enter OTP" name="number" id={Styles.otpField} className={Styles.otpclass} required></input>
 
     <input type="password" placeholder="Password" name="psw" className={Styles.InputField} required></input>
     <input type="password" placeholder="Repeat Password" name="psw" className={Styles.InputField} required></input>
@@ -35,7 +35,7 @@ const sendOtp = () =>{
 
     <Link to="/signup" ><button type="button" className={Styles.Button_SignUp}>Sign Up</button></Link>
 
-    <button type="submit" className={Styles.Button_Login}>Change Password</button>
+    <button type="submit" className={Styles.Button_Changepsw}>Change Password</button>
 
 
         </form>
