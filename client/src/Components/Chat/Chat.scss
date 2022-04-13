@@ -1,6 +1,6 @@
 @import "../../variables.scss";
 .chatBox {
-  height: calc(23vh);
+  height: calc(22vh);
   overflow: auto;
   display: flex;
   flex-direction: column;
@@ -12,5 +12,25 @@
   .chatBox {
     height: calc(50vh - 45px);
     padding-bottom: 5px;
+  }
+}
+@media screen and (min-height: 1080px){
+  .chatBox {
+    height: calc(24.75vh);
+  }
+}
+@media screen and (max-width: 320px){
+  .chatBox {
+    height: calc(18.5vh);
+  }
+}
+@media screen and (max-width: 375px) and (min-width: 321px){
+  .chatBox {
+    height: calc(18.5vh);
+  }
+}
+@media screen and (max-width: 425px) and (min-width : 376px){
+  .chatBox {
+    height: calc(18.5vh);
   }
 }

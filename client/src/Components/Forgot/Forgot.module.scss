@@ -48,3 +48,157 @@ margin-left: 10%;
   @include InputField();
 
 }
+@media screen and (max-width: 320px){
+
+  .Title{
+      padding-bottom: 5%;
+
+  }
+  .Form{
+      padding-top: 5vh;
+      height: 50vh;
+  }
+  .EmailButtonContainer{
+      position: relative;
+  }
+  .EmailInputField{
+      @include InputField();
+      color: aqua
+  }
+  .Button_SendOTP{
+      @include Button();
+      margin-top: 0;
+      margin-left: 0;
+      margin-right: 0;
+      top: 0;
+      left: 70%;
+      height: 60%;
+      position: absolute;
+      z-index: 10;
+  }
+  .otpFieldDisabled{
+      @include InputField();
+      color: blue;
+  }
+  .Button_Changepsw{
+    @include Button();
+
+  width: 50%;
+  margin-right:5% ;
+  margin-left: 8%;
+  }
+  .Button_SignUp{
+    @include Button();
+
+  width: 25%;
+  margin-right:3% ;
+  margin-left: 8%;
+  }
+  .otpclass{
+
+    @include InputField();
+
+  }
+}
+@media screen and (max-width: 375px) and (min-width: 321px){
+  .Title{
+      padding-bottom: 5%;
+
+  }
+  .Form{
+      padding-top: 5vh;
+      height: 50vh;
+  }
+  .EmailButtonContainer{
+      position: relative;
+  }
+  .EmailInputField{
+      @include InputField();
+      color: aqua
+  }
+  .Button_SendOTP{
+      @include Button();
+      margin-top: 0;
+      margin-left: 0;
+      margin-right: 0;
+      top: 0;
+      left: 70%;
+      height: 60%;
+      position: absolute;
+      z-index: 10;
+  }
+  .otpFieldDisabled{
+      @include InputField();
+      color: blue;
+  }
+  .Button_Changepsw{
+    @include Button();
+
+  width: 50%;
+  margin-right:5% ;
+  margin-left: 8%;
+  }
+  .Button_SignUp{
+    @include Button();
+
+  width: 25%;
+  margin-right:3% ;
+  margin-left: 8%;
+  }
+  .otpclass{
+
+    @include InputField();
+
+  }
+}
+@media screen and (max-width: 425px) and (min-width : 376px){
+  .Title{
+      padding-bottom: 5%;
+
+  }
+  .Form{
+      padding-top: 5vh;
+      height: 50vh;
+  }
+  .EmailButtonContainer{
+      position: relative;
+  }
+  .EmailInputField{
+      @include InputField();
+      color: aqua
+  }
+  .Button_SendOTP{
+      @include Button();
+      margin-top: 0;
+      margin-left: 0;
+      margin-right: 0;
+      top: 0;
+      left: 70%;
+      height: 60%;
+      position: absolute;
+      z-index: 10;
+  }
+  .otpFieldDisabled{
+      @include InputField();
+      color: blue;
+  }
+  .Button_Changepsw{
+    @include Button();
+
+  width: 50%;
+  margin-right:5% ;
+  margin-left: 8%;
+  }
+  .Button_SignUp{
+    @include Button();
+
+  width: 25%;
+  margin-right:3% ;
+  margin-left: 8%;
+  }
+  .otpclass{
+
+    @include InputField();
+
+  }
+}

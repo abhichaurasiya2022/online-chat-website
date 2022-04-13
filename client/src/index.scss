@@ -184,7 +184,7 @@ body {
 }
 
 .chatInput {
-  width: calc(102.935% - 220px);
+  width: calc(101.935% - 217px);
   border-width: 4px;
   border-style: solid;
   border-color: $primary-color;
@@ -212,7 +212,7 @@ body {
 
 .chatButton {
   border: none;
-  width: 110px;
+  width: 17.4vh;
   padding: 14px 0 13px 0;
   cursor: pointer;
   background: $primary-color;
@@ -231,7 +231,14 @@ body {
   width: 75vw;
   height: count(100vh -70px);
 }
-@media screen and (min-width: 861px) {
+@media screen and (min-height: 1080px) {
+  .chatInput{
+    width: calc(101.935% - 220px);
+
+  }
+  .chatButton {
+    width: 10.2vh;
+  }
 }
 
 @media screen and (max-width: 320px){
@@ -244,10 +251,12 @@ body {
   //border-bottom: 5px solid blue;
 }
 .chatInput{
-  width: 31%;
+  width: 34%;
 
 }
-
+.chatButton {
+  width: 14.4vh;
+}
 .gameContainer{
   position: fixed;
   top: 45%;
@@ -281,6 +290,7 @@ body {
 
 }
 
+
 }
 @media screen and (max-width: 375px) and (min-width: 321px){
 
@@ -292,10 +302,12 @@ body {
   //border-bottom: 5px solid blue;
 }
 .chatInput{
-  width: 41%;
+  width: 44%;
 
 }
-
+.chatButton {
+  width: 14.1vh;
+}
 .gameContainer{
   position: fixed;
   top: 45%;
@@ -341,9 +353,11 @@ body {
   //border-bottom: 5px solid blue;
 }
 .chatInput{
-  width: 48%;
+  width: 50%;
 }
-
+.chatButton {
+  width: 14.55vh;
+}
 .gameContainer{
   position: fixed;
   top: 45%;

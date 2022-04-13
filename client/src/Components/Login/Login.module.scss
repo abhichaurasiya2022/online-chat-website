@@ -48,6 +48,34 @@
   height: 100vh;
   background-color: rgb(199, 199, 199);
 }
+
+@mixin InputField {
+
+  position: relative;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+
+  padding: 10px 5px;
+  margin: 0 0 25px 0;
+  border: none;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  background: transparent;
+  font-size: 1rem;
+  color: white;
+  opacity: 1;
+  animation: input_opacity 0.8s cubic-bezier(.55, 0, .1, 1);
+  transition: border-bottom 0.2s cubic-bezier(.55, 0, .1, 1);
+  &:focus{
+    outline: none;
+    border-bottom: 2px solid #ffffff;
+  }
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.473);
+  }
+}
 .Body{
  @include Body();
 }
@@ -59,34 +87,6 @@
     color: white;
     text-align: center;
     margin-top: 0;
-}
-
-@mixin InputField {
-
-    position: relative;
-    width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
-
-    padding: 10px 5px;
-    margin: 0 0 25px 0;
-    border: none;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
-    box-sizing: border-box;
-    background: transparent;
-    font-size: 1rem;
-    color: white;
-    opacity: 1;
-    animation: input_opacity 0.8s cubic-bezier(.55, 0, .1, 1);
-    transition: border-bottom 0.2s cubic-bezier(.55, 0, .1, 1);
-    &:focus{
-        outline: none;
-        border-bottom: 2px solid #ffffff;
-    }
-
-        &::placeholder {
-        color: rgba(255, 255, 255, 0.473);
-}
 }
 
 .InputField{
@@ -122,4 +122,177 @@
   margin-right: 15%;
   margin-left: 5%;
 
+}
+
+
+@media screen and (max-width: 320px){
+  .Body{
+   @include Body();
+  }
+  .Form {
+      @include Form();
+      width: 90vw;
+      margin-left: 5vw;
+      margin-right: 5vw;
+      height: 40vh;
+
+  }
+  .Title{
+      font-size: 8.75vw;
+      color: white;
+      text-align: center;
+      margin-top: 0;
+  }
+
+  .InputField{
+      @include InputField();
+  }
+  .Link{
+    text-decoration: none;
+  }
+  .ForgotPassLink{
+
+      color: #07b7ed;
+      width: 50%;
+      margin-left: 45%;
+      margin-right: 10%;
+      font-size: 4.5vw;
+      text-decoration: none;
+      a{
+        text-decoration: none;
+      }
+      &:hover{
+          color: white;
+
+      }
+
+  }
+  .Button_Login{
+    @include Button();
+    margin-left: 13%;
+    margin-right: 5%;
+    width: 25%;
+    height: 18%;
+  }
+  .Button_SignUp{
+    @include Button();
+    margin-right: 15%;
+    margin-left: 5%;
+    width: 30%;
+    height: 18%;
+  }
+}
+@media screen and (max-width: 375px) and (min-width: 321px){
+  .Body{
+   @include Body();
+  }
+  .Form {
+      @include Form();
+      width: 90vw;
+      margin-left: 5vw;
+      margin-right: 5vw;
+      height: 40vh;
+
+  }
+  .Title{
+      font-size: 8.75vw;
+      color: white;
+      text-align: center;
+      margin-top: 0;
+  }
+
+  .InputField{
+      @include InputField();
+  }
+  .Link{
+    text-decoration: none;
+  }
+  .ForgotPassLink{
+
+      color: #07b7ed;
+      width: 50%;
+      margin-left: 45%;
+      margin-right: 10%;
+      font-size: 4.5vw;
+      text-decoration: none;
+      a{
+        text-decoration: none;
+      }
+      &:hover{
+          color: white;
+
+      }
+
+  }
+  .Button_Login{
+    @include Button();
+    margin-left: 13%;
+    margin-right: 5%;
+    width: 25%;
+    height: 18%;
+  }
+  .Button_SignUp{
+    @include Button();
+    margin-right: 15%;
+    margin-left: 5%;
+    width: 30%;
+    height: 18%;
+  }
+}
+@media screen and (max-width: 425px) and (min-width : 376px){
+  .Body{
+   @include Body();
+  }
+  .Form {
+      @include Form();
+      width: 90vw;
+      margin-left: 5vw;
+      margin-right: 5vw;
+      height: 40vh;
+
+  }
+  .Title{
+      font-size: 8.75vw;
+      color: white;
+      text-align: center;
+      margin-top: 0;
+  }
+
+  .InputField{
+      @include InputField();
+  }
+  .Link{
+    text-decoration: none;
+  }
+  .ForgotPassLink{
+
+      color: #07b7ed;
+      width: 50%;
+      margin-left: 45%;
+      margin-right: 10%;
+      font-size: 4.5vw;
+      text-decoration: none;
+      a{
+        text-decoration: none;
+      }
+      &:hover{
+          color: white;
+
+      }
+
+  }
+  .Button_Login{
+    @include Button();
+    margin-left: 13%;
+    margin-right: 5%;
+    width: 25%;
+    height: 18%;
+  }
+  .Button_SignUp{
+    @include Button();
+    margin-right: 15%;
+    margin-left: 5%;
+    width: 30%;
+    height: 18%;
+  }
 }

@@ -119,3 +119,15 @@ margin-right:8.5% ;
     }
   }
 }
+@media screen and (min-height: 1080px){
+  .registeredCard{
+    .discriptionRegistered{
+      font-size: 3vh;
+      padding: 2.5%;
+    }
+    .buttonLogin,.buttonSignup{
+      font-size: 2.7vh;
+    }
+  }
+
+}
