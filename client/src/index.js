@@ -3,12 +3,13 @@ import {render} from 'react-dom';
 import { BrowserRouter } from "react-router-dom";
 
 import './index.scss';
-import App from './unregisteredPage';
+import Unreg from './unregisteredPage';
 import Login from './login';
 import Signup from './signup';
 import Forgot from './forgot';
-import Home from './Home';
-import Test from './test';
+import App from './App';
+import Dashboard from './Dashboard';
+import Call from './call';
 import * as serviceWorker from './serviceWorker';
 import {
   BrowserRouter as Router,
@@ -30,12 +31,13 @@ const rootElement = document.getElementById("root");
 render (
 <BrowserRouter>
 <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="unregisteredPage" element={<App />} />
+    <Route path="/" element={<App />} />
+    <Route path="unregisteredPage" element={<Unreg />} />
     <Route path="login" element={<Login />} />
     <Route path="signup" element={<Signup />} />
-      <Route path="forgot" element={<Forgot />} />
-    <Route path="test" element={<Test />} />
+    <Route path="forgot" element={<Forgot />} />
+    <Route path="call" element={<Call />} />
+
 
   </Routes>
 </BrowserRouter>,

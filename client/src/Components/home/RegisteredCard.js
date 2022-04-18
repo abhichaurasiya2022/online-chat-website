@@ -2,14 +2,16 @@ import React from 'react';
 import { Button, Card } from 'reactstrap';
 import Styles from './RegisteredCard.module.scss';
 import { Link } from "react-router-dom";
-
 const RegisteredCard = () => {
 
     return (
 
             <div className={Styles.parentRegisteredCard}>
             <Card className={Styles.registeredCard}>
-                <div className={Styles.discriptionRegistered}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eros elit, interdum sed dolor et, tincidunt porttitor purus. Aliquam orci tellus, porta et tortor nec, tempor commodo orci. Etiam est orci, euismod et sapien cursus, volutpat vestibulum mauris. Aliquam ante ex, dictum sit amet arcu ut, vestibulum consequat mauris. Maecenas ornare, risus et blandit dictum, nibh odio fringilla arcu, eu tempor augue tellus vitae enim. Morbi laoreet eu ex eu fringilla. Praesent gravida rhoncus ante et sollicitudin. In tristique ipsum urna, ac </div>
+                <div className={Styles.discriptionRegistered}>
+                <h3>Registered Users</h3>
+                <p> Already registered users can sign in and start connecting with friends or connect with starngers anonymously.   </p>
+                </div>
                     <Link to="/login">
                 <Button className={Styles.buttonLogin} color='transparent'>
                     Login
