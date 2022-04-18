@@ -6,20 +6,43 @@ const server = http.createServer(app);
 const socket = require("socket.io");
 const io = socket(server);
 const path = require("path");
-const { AwakeHeroku } = require("awake-heroku");
+const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser');
+const db = require('./static/scripts/db');
+const cors = require("cors");
+
+dotenv.config({ path:'./.env' });
+
 const _ = require("lodash");
+const publicDirectory = path.join(__dirname, './static');
 
-AwakeHeroku.add({
-  url: "https://smishy.herokuapp.com",
+app.use(cors());
+app.use(express.static(publicDirectory));
+app.use(express.urlencoded({ extended: false}));
+app.use(express.json());
+app.use(cookieParser());
+console.log(__dirname);
+
+app.use('/', require('./static/scripts/routes'));
+app.use('/api', require('./static/scripts/api'))
+//app.use(express.static("./client/build"));
+
+app.get("/test", (req, res) => {
+  console.log("test");
+  res.send("Hello");
 });
 
-app.use(enforce.HTTPS({ trustProtoHeader: true }));
+db.connect( (error) => {
+  if(error) {
+    console.log(error)
+  } else {
+    console.log("MySQL Connected...")
+  }
+})
 
-app.use(express.static("./client/build"));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-});
+
+
 let i =0;
 function tities(){
 
@@ -152,6 +175,23 @@ io.on("connection", (socket) => {
   //   io.to(data.peerId).emit("close");
   // });
 });
+
+io.on('connection', (socket) => {
+    socket.emit('meReg', socket.id );
+  
+    socket.on('disconnectReg', () => {
+        socket.broadcast.emit("callendedReg");
+    });
+
+    socket.on("calluserReg", ({ userToCall, signalData, from, name}) => {
+        io.to(userToCall).emit("calluserReg", {signal: signalData, from, name});
+    });
+
+    socket.on("answercallReg", (data) => {
+        io.to(data.to).emit("callacceptedReg", data.signal);
+    });
+});
+
 
 const port = process.env.PORT || 8000;
 
