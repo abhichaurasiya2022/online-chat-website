@@ -177,15 +177,15 @@ io.on("connection", (socket) => {
 });
 
 io.on('connection', (socket) => {
+
+
   console.log("connected");
     socket.emit('meReg', socket.id );
 
-    socket.on('disconnectReg', () => {
-        socket.broadcast.emit("callendedReg");
-    });
-
     socket.on('disconnect', () => {
         console.log("dis");
+        socket.broadcast.emit("callendedReg");
+
     });
 
     socket.on("calluserReg", ({ userToCall, signalData, from, name}) => {
