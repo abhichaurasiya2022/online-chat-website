@@ -3,11 +3,17 @@ import { io} from 'socket.io-client';
 import peer from 'simple-peer';
 import Peer from "simple-peer";
 import Axios from "axios";
+import {useCookies, removeCookie} from 'react-cookie';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 const SocketContext = createContext();
 
 const socket = io.connect('/');
 
 const Contextprovider = ({children}) => {
+  const [cookies, setCookies, removeCookie] = useCookies(['token']);
+  const decoded =jwt.decode(cookies.jwt, process.env.JWT_SECRET);
+
     const [stream, setStream] = useState(null);
     const [me, setMe] = useState('');
     const [call, setCall] = useState({});
@@ -93,6 +99,21 @@ const Contextprovider = ({children}) => {
       );
     }
 
+
+    const sendId = (iidd) => {
+      console.log(iidd + "from fun");
+      setMe(iidd);
+     Axios.post('/api/addId', {
+       myId:iidd,
+       myEmail: decoded.emailid,
+     }).then(response => {
+       setMyStatus(response.data);
+       console.log(response.data);
+       console.log(me);
+     })
+
+    }
+
     useEffect(() => {
       /*
         navigator.mediaDevices.getUserMedia({ video: true, audio: true })
@@ -102,17 +123,19 @@ const Contextprovider = ({children}) => {
                 myVideo.current.srcObject = currentStream;
             });
 */
+
+
+
         initVideo();
         socket.on('meReg', (id) =>{
-           setMe(id);
-           console.log(id);
-          Axios.post('/api/addID', {
-            myId:id,
-            myEmail: myEmail,
-          }).then(response => {
-            setMyStatus(response.data.myStatus);
-            console.log(response.data);
-          })
+
+           if (decoded) {
+               setMyEmail(decoded.emailid);
+               console.log(decoded.emailid + " heyyyyyy");
+               sendId(id);
+
+           }
+
          });
          console.log("hello");
         socket.on('calluserReg', ({ from, name: callerName, signal }) => {
@@ -120,6 +143,8 @@ const Contextprovider = ({children}) => {
             setCall({ isReceivedCall: true, from, name: callerName, signal })
         });
     }, []);
+
+
 
     const answerCall = () => {
         setCallAccepted(true)

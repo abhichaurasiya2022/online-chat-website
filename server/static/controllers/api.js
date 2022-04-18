@@ -36,15 +36,45 @@ exports.test = async (req, res) => {
 
 }
 
+
+exports.getId = async (req, res) => {
+
+  const {callname, callid} = req.body;
+  db.query('SELECT myID FROM ocw_users WHERE user_id = ? AND name = ?', [callid, callname], async (error, result) =>{
+    if (error) {
+      console.log(error);
+    }
+    else {
+      console.log(result);
+      if (result[0].myID) {
+        console.log(result.length);
+        console.log(result[0].myID);
+        return res.send(result[0].myID);
+      }
+      else {
+        console.log("offline");
+          return res.send("offline");
+      }
+    }
+  } );
+}
+
+
+
+
+
+
 exports.addId = async (req, res) => {
 
   const {myId, myEmail} = req.body;
+  console.log(myId + " " + myEmail);
   db.query('UPDATE ocw_users SET myID = ? WHERE email = ?', [myId, myEmail], async (error, result) =>{
     if (error) {
       console.log(error);
     }
     else {
       const myStatus = true;
+
       return res.send(myStatus);
     }
   } )

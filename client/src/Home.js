@@ -9,6 +9,7 @@ import TermsAndConditions from './Components/home/TermsAndConditions';
 import {useCookies} from 'react-cookie';
 import dotenv from 'dotenv';
 import Dashboard from './Dashboard';
+import { Contextprovider } from './Components/SocketContext';
 
 const Index = () => {
 
@@ -27,9 +28,9 @@ const Index = () => {
 
     {isAuth && (
       <>
-
+      <Contextprovider>
         <Dashboard/>
-       
+       </Contextprovider>
       </>
     )}
 

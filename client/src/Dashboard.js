@@ -1,6 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {useCookies, removeCookie} from 'react-cookie';
+import VideoPlayer from "./Components/Videoplayer/VideoPlayer";
 import jwt from 'jsonwebtoken';
+import { SocketContext } from "./Components/SocketContext";
 import dotenv from 'dotenv';
 import Axios from 'axios';
 import Login from './login';
@@ -27,6 +29,7 @@ const Dashboard = () => {
     const [searchResults, setSearchResults] = useState({});
     const [testVar, setTestVar] = useState([]);
     const [boobsName, setBoobsName] = useState([]);
+    const { callUser} = useContext(SocketContext);
     const [boobsId, setBoobsId] = useState([]);
     let testprint = "test";
     let titties={};
@@ -50,6 +53,7 @@ const Dashboard = () => {
       })
     }
     const getApi = () =>{
+
       Axios.post('/api/dashboard', {
         emailid:decoded.emailid,
       }).then(response => {
@@ -70,6 +74,13 @@ const Dashboard = () => {
 
     const callFriend = (callname, callid) =>{
       console.log(callname + " " + callid);
+      Axios.post('/api/getId', {
+        callname: callname,
+        callid: callid,
+      }).then(response => {
+        console.log(response.data);
+        callUser(response.data)
+      });
     }
 
     useEffect(() => {
@@ -128,6 +139,8 @@ const Dashboard = () => {
           >
             Log out
         </button>
+
+        <VideoPlayer />
         </>
       )}
 

@@ -17,5 +17,6 @@ router.post('/addfriend', apiController.addfriend);
 
 router.post('/addId', apiController.addId);
 
+router.post('/getId', apiController.getId);
 
 module.exports = router;

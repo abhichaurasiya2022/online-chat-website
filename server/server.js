@@ -177,10 +177,15 @@ io.on("connection", (socket) => {
 });
 
 io.on('connection', (socket) => {
+  console.log("connected");
     socket.emit('meReg', socket.id );
-  
+
     socket.on('disconnectReg', () => {
         socket.broadcast.emit("callendedReg");
+    });
+
+    socket.on('disconnect', () => {
+        console.log("dis");
     });
 
     socket.on("calluserReg", ({ userToCall, signalData, from, name}) => {
@@ -190,7 +195,10 @@ io.on('connection', (socket) => {
     socket.on("answercallReg", (data) => {
         io.to(data.to).emit("callacceptedReg", data.signal);
     });
+
+
 });
+
 
 
 const port = process.env.PORT || 8000;
