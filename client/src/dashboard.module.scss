@@ -1,0 +1,15 @@
+.friendList{
+
+  position: fixed;
+  width: 15vw;
+  left: 85vw;
+  top: 0;
+  height: 100vh;
+  border: 1px solid blue;
+  .userName, .buttonLogout{
+    display: inline;
+    height: 5vh;
+    margin-left: 2.25vw;
+  }
+  
+}
