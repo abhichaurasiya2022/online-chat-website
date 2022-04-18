@@ -1,7 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {useCookies, removeCookie} from 'react-cookie';
 import VideoPlayer from "./Components/Videoplayer/VideoPlayer";
-import Styles from './dashboard.module.scss';
 import jwt from 'jsonwebtoken';
 import { SocketContext } from "./Components/SocketContext";
 import {useBeforeunload} from "react-beforeunload";
@@ -159,7 +158,11 @@ const Dashboard = () => {
           >
             Search
         </button>
-
+        <button
+          onClick={() => {Logout()}}
+          >
+            Log out
+        </button>
 
         <VideoPlayer />
         </>
@@ -189,13 +192,8 @@ const Dashboard = () => {
       )}
 
       {titties && (
-          <div className={Styles.friendList}>
-          <div className={Styles.userName}>{name}</div>
-          <button className={Styles.buttonLogout}
-            onClick={() => {Logout()}}
-            >
-              Log out
-          </button>
+        <>
+        <h1>hello</h1>
         {abc()}
 
           <table>
@@ -222,17 +220,23 @@ const Dashboard = () => {
             })}
           </tbody>
         </table>
-        </div>
+        </>
       )}
 
-      {callAccepted && (
+      {callAccepted && !callEnded ? (
                                       <button
                                       onClick={leaveCall}
 
                                       >
                                           Hang Up
                                       </button>
-                                  ) }
+                                  ) : (
+                                      <button
+
+                                      >
+                                          Call
+                                      </button>
+          )}
 
           {call.isReceivedCall && !callAccepted && (
                 <div>
