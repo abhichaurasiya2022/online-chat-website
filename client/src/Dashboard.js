@@ -34,9 +34,11 @@ const Dashboard = () => {
     const [searchName, setsearchName] = useState("");
     const [searchUserId, setsearchUserId] = useState("");
     const [name, setName] = useState("");
+    const [myUid, setMyUid] = useState("");
     const [friends, setFriends] = useState(["none","none"]);
     const [searchResults, setSearchResults] = useState({});
     const [testVar, setTestVar] = useState([]);
+    const [isFriendAdded, setIsFriendAdded] = useState(false);
     const [boobsName, setBoobsName] = useState([]);
     const {  me, callAccepted, callerName, setCallerName, callEnded, leaveCall, callUser, answerCall, call } = useContext(SocketContext);
     const [boobsId, setBoobsId] = useState([]);
@@ -52,7 +54,15 @@ const Dashboard = () => {
     }
 
     const AddFriend =() => {
-
+      Axios.post('/api/addfriend', {
+        myName: name,
+        myId: myUid,
+        youName: searchResults.name,
+        youId: searchResults.user_id,
+      }).then(response => {
+        console.log(response.data);
+        setIsFriendAdded(true);
+      });
     }
 
     const SearchUser = () => {
@@ -60,6 +70,7 @@ const Dashboard = () => {
         searchName: searchName,
         searchUserId: searchUserId
       }).then(response => {
+
         setSearchResults(response.data);
       })
     }
@@ -70,6 +81,7 @@ const Dashboard = () => {
       }).then(response => {
        console.log(response.data.name);
        setName(response.data.name);
+       setMyUid(response.data.myUid);
        setCallerName(response.data.name);
        titties = response.data.friends;
        console.log(response.data.friends);
