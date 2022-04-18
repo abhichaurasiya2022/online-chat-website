@@ -25,7 +25,7 @@ const Login = () => {
 
       <div className={Styles.Body}>
 
-
+      <div className={Styles.Form}>
 
       <div className={Styles.Title}>Login</div>
 
@@ -62,7 +62,7 @@ const Login = () => {
 
 
 
-
+    </div>
         </div>
     );
 }
