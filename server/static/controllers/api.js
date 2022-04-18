@@ -122,7 +122,7 @@ exports.addfriend = async (req, res) => {
       for (const x in friends) {
         myFriendsName.push(friends[x].friendName);
       }
-      if (!(youName in myFriendsName)) {
+      if ((youName in myFriendsName)) {
         console.log("nope");
         return res.send("NOPE");
       }
@@ -167,13 +167,14 @@ exports.dashboard = async (req, res) => {
           }
 
           const name = results[0].name;
+          const myUid = results[0].user_id;
           const friends = JSON.parse(results[0].friends);
           let myFriends = [];
           for (const x in friends) {
             myFriends.push(x);
           }
           console.log(friends);
-          return res.send({"name":name, "friends":friends});
+          return res.send({"name":name, "friends":friends, "myUid": myUid});
 
 
 
