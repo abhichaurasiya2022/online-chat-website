@@ -8,7 +8,7 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 const SocketContext = createContext();
 
-const socket = io.connect('/');
+const socket = io.connect('/userType2');
 
 const Contextprovider = ({children}) => {
   const [cookies, setCookies, removeCookie] = useCookies(['token']);
@@ -19,7 +19,7 @@ const Contextprovider = ({children}) => {
     const [call, setCall] = useState({});
     const [callAccepted, setCallAccepted] = useState(false);
     const [callEnded, setCallEnded] = useState(false);
-    const [name, setName] = useState('');
+    const [callerName, setCallerName] = useState('');
     const [myEmail, setMyEmail] = useState('');
     const [onlyChat, setOnlyChat] = useState(false);
     const [myStatus, setMyStatus] = useState(false);
@@ -138,9 +138,9 @@ const Contextprovider = ({children}) => {
 
          });
          console.log("hello");
-        socket.on('calluserReg', ({ from, name: callerName, signal }) => {
+        socket.on('calluserReg', ({ from, callerName: callerName, signal }) => {
           console.log("tities");
-            setCall({ isReceivedCall: true, from, name: callerName, signal })
+            setCall({ isReceivedCall: true, from, callerName: callerName, signal })
         });
     }, []);
 
@@ -168,7 +168,7 @@ const Contextprovider = ({children}) => {
         const peer = new Peer({ initiator: true, trickle: false, stream });
 
         peer.on('signal', (data) => {
-            socket.emit('calluserReg', { userToCall: id, signalData: data, from: me, name });
+            socket.emit('calluserReg', { userToCall: id, signalData: data, from: me, callerName });
         });
 
         peer.on('stream', (currentStream) => {
@@ -189,8 +189,9 @@ const Contextprovider = ({children}) => {
         setCallEnded(true);
 
         connectionRef.current.destroy();
+        setCallAccepted(false);
+        setCallEnded(false);
 
-        window.location.reload();
     }
 
     return (
@@ -200,9 +201,9 @@ const Contextprovider = ({children}) => {
             myVideo,
             userVideo,
             stream,
-            name,
+            callerName,
             setMyEmail,
-            setName,
+            setCallerName,
             callEnded,
             me,
             callUser,

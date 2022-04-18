@@ -16,11 +16,16 @@
     dob_dd INT NOT NULL,
     dob_yy INT NOT NULL,
     friends JSON,
+    myID VARCHAR(10000),
     PRIMARY KEY (user_no)
   );
 
   ALTER TABLE ocw_users
   ADD friends JSON;
+
+  ALTER TABLE ocw_users
+  ADD myID VARCHAR(10000);
+
 
  CREATE TABLE titties(
    nipple JSON,
@@ -36,6 +41,10 @@
  UPDATE ocw_users
  SET friends = '{"xyz":"xyz001", "pqr":"pqr001"}'
  WHERE user_no = 1;
+
+ UPDATE ocw_users
+ SET myID = 'hhdhdhd'
+ WHERE email = 'abc@email.com';
 
  UPDATE ocw_users
  SET friends = '[{"friendName": "pqr",

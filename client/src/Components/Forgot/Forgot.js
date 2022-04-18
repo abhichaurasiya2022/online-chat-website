@@ -5,13 +5,13 @@ import Image from 'next/image'
 const ForgotPassPage = () => {
 
 
-
 const [style, setStyle] = useState("Styles.otpFieldDisabled");
 const sendOtp = () =>{
   console.log("otp button chnaged");
   setStyle("Styles.otpFieldEnabled");
 
     };
+
  let otpclass = style;
 
     return (

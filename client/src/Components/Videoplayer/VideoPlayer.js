@@ -7,7 +7,7 @@ import { SocketContext } from "../SocketContext";
 
 
 const VideoPlayer = () => {
-    const { name, callAccepted, myVideo, setMyEmail, userVideo, callEnded, stream, call} = useContext(SocketContext);
+    const { callerName, callAccepted, myVideo, setMyEmail, userVideo, callEnded, stream, call} = useContext(SocketContext);
     const [cookies, setCookies, removeCookie] = useCookies(['token']);
     const decoded =jwt.decode(cookies.jwt, process.env.JWT_SECRET);
     useEffect(() => {
@@ -28,7 +28,7 @@ const VideoPlayer = () => {
             {stream && (
                     <div>
                         <div >
-                             <h3 >{name || 'Name'}</h3>
+                             <h3 >{callerName || 'Name'}</h3>
                              <video
                                playsInline
                                muted
@@ -43,7 +43,7 @@ const VideoPlayer = () => {
             {callAccepted && !callEnded && (
                     <div>
                         <div >
-                             <h3 >{ call.name || 'Name'}</h3>
+                             <h3 >{ call.callerName || 'Name'}</h3>
                              <video playsInline  ref={userVideo} autoPlay  />
                         </div>
                     </div>

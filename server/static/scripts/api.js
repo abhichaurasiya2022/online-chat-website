@@ -19,4 +19,8 @@ router.post('/addId', apiController.addId);
 
 router.post('/getId', apiController.getId);
 
+
+router.post('/gethello', apiController.gethello);
+
+
 module.exports = router;

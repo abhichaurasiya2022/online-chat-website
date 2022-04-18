@@ -3,6 +3,7 @@ import {useCookies, removeCookie} from 'react-cookie';
 import VideoPlayer from "./Components/Videoplayer/VideoPlayer";
 import jwt from 'jsonwebtoken';
 import { SocketContext } from "./Components/SocketContext";
+import {useBeforeunload} from "react-beforeunload";
 import dotenv from 'dotenv';
 import Axios from 'axios';
 import Login from './login';
@@ -19,6 +20,13 @@ import {
 } from "react-icons/fa";
 
 const Dashboard = () => {
+
+    useBeforeunload((event) => {
+      event.preventDefault();
+    });
+
+
+
     const [cookies, setCookies, removeCookie] = useCookies(['token']);
     const [isAuth, setIsAuth] = useState(false);
     const decoded =jwt.decode(cookies.jwt, process.env.JWT_SECRET);
@@ -29,11 +37,13 @@ const Dashboard = () => {
     const [searchResults, setSearchResults] = useState({});
     const [testVar, setTestVar] = useState([]);
     const [boobsName, setBoobsName] = useState([]);
-    const { callUser} = useContext(SocketContext);
+    const {  me, callAccepted, callerName, setCallerName, callEnded, leaveCall, callUser, answerCall, call } = useContext(SocketContext);
     const [boobsId, setBoobsId] = useState([]);
     let testprint = "test";
     let titties={};
     let tittie=[];
+
+
 
     const Logout = () => {
       removeCookie('jwt');
@@ -59,7 +69,7 @@ const Dashboard = () => {
       }).then(response => {
        console.log(response.data.name);
        setName(response.data.name);
-
+       setCallerName(response.data.name);
        titties = response.data.friends;
        console.log(response.data.friends);
 
@@ -84,6 +94,7 @@ const Dashboard = () => {
     }
 
     useEffect(() => {
+
       console.log(decoded);
       if (decoded) {
         console.log(decoded.emailid);
@@ -114,6 +125,7 @@ const Dashboard = () => {
     <>
       {isAuth && (
         <>
+
         <h4>{name}</h4>
         <input
           type="text"
@@ -199,7 +211,31 @@ const Dashboard = () => {
         </>
       )}
 
+      {callAccepted && !callEnded ? (
+                                      <button
+                                      onClick={leaveCall}
 
+                                      >
+                                          Hang Up
+                                      </button>
+                                  ) : (
+                                      <button
+
+                                      >
+                                          Call
+                                      </button>
+          )}
+
+          {call.isReceivedCall && !callAccepted && (
+                <div>
+                    <h1>{call.callerName} is calling: </h1>
+                    <button
+                     onClick={answerCall}
+                      >
+                        Answer
+                    </button>
+                </div>
+            )}
 
 
 

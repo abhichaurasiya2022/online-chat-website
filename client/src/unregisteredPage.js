@@ -112,7 +112,7 @@ const getReset = () =>{
 
   useEffect(() => {
     initVideo();
-    socket.current = io.connect("/");
+    socket.current = io.connect("/unreg");
 
     window.onbeforeunload = (event) => {
       if (myPeer.current) {
@@ -544,7 +544,7 @@ const getReset = () =>{
 
 
         <div className="mainContainer">
-      
+
           {(
             <div>
               <Chat messages={messages} />

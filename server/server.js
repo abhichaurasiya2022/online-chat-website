@@ -171,35 +171,177 @@ io.on("connection", (socket) => {
     });
   });
 
+
+
   // socket.on("close", (data) => {
   //   io.to(data.peerId).emit("close");
   // });
 });
 
+
+/*
+
+    var nsp = io.of('/userType1');
+    nsp.on("connection",  (socket) => {
+      let isBusy = false;
+
+      if (!_.includes(users, socket.id)) {
+        users.push(socket.id);
+      }
+      socket.emit("yourID", {
+        id:socket.id,
+        pivot:players[i],
+      },tities() ) ;
+      nsp.sockets.emit("allUsers", users);
+
+      socket.on("disconnect", () => {
+        _.pull(users, socket.id);
+
+        const userInQueue = _.find(queue, u => u.id === socket.id);
+
+        if (userInQueue) {
+          _.remove(queue, {id: userInQueue.id});
+          isBusy = false;
+        }
+      });
+
+      socket.on("leaveQueue", () => {
+        const userInQueue = _.find(queue, u => u.id === socket.id);
+
+        if (userInQueue && isBusy) {
+          isBusy = false;
+          _.remove(queue, {id: userInQueue.id});
+        }
+      });
+
+      socket.on("sendMessage", (data) => {
+        socket.emit("messageSent", {
+          message: data.message,
+        });
+
+        nsp.to(data.peerId).emit("receiveMessage", {
+          message: data.message,
+        });
+      });
+
+      socket.on("updateGrid", (data) => {
+        socket.emit("historyUpdated", {
+          historyPoint: data.historyPoint,
+          squares: data.squares,
+          setStepNumber: data.setStepNumber,
+          xIsNext: data.xIsNext,
+        });
+
+        nsp.to(data.peerId).emit("receiveHistory", {
+          historyPoint: data.historyPoint,
+          squares: data.squares,
+          setStepNumber: data.setStepNumber,
+          xIsNext: data.xIsNext,
+        });
+      });
+
+
+      socket.on("resetGrid", (data) => {
+        socket.emit("resetGridDone");
+        nsp.to(data.peerId).emit("resetGridDoneIo");
+      });
+
+      socket.on("findPartner", (data) => {
+        viablePartner = _.find(queue, u => {
+          return u.id !== socket.id && u.onlyChat === data.onlyChat
+        });
+
+        if (!viablePartner && !isBusy) {
+          isBusy = true;
+          const userInQueue = _.find(queue, u => u.id === socket.id);
+          if (!userInQueue) {
+            queue.push({ id: socket.id, onlyChat: data.onlyChat });
+          }
+        } else if (!isBusy) {
+          isBusy = true;
+          _.remove(queue, {id: viablePartner.id});
+
+          nsp.to(viablePartner.id).emit("peer", {
+            peerId: socket.id,
+            initiator: true,
+          });
+
+          socket.emit("peer", {
+            peerId: viablePartner.id,
+            initiator: false,
+          });
+        }
+      });
+
+      socket.on("signal", (data) => {
+        if (!data.peerId) {
+          return;
+        }
+
+        isBusy = false;
+        nsp.to(data.peerId).emit("signal", {
+          signal: data.signal,
+          peerId: socket.id,
+        });
+      });
+
+
+
+      // socket.on("close", (data) => {
+      //   nsp.to(data.peerId).emit("close");
+      // });
+    });
+*/
+
+        var nspd = io.of('/userType2');
+        nspd.on("connection",  (socket) => {
+
+            console.log("connected");
+              socket.emit('meReg', socket.id );
+
+              socket.on('disconnect', () => {
+                  console.log("dis");
+                  socket.broadcast.emit("callendedReg");
+
+              });
+
+              socket.on("calluserReg", ({ userToCall, signalData, from, callerName}) => {
+                  nspd.to(userToCall).emit("calluserReg", {signal: signalData, from, callerName});
+              });
+
+              socket.on("answercallReg", (data) => {
+                  nspd.to(data.to).emit("callacceptedReg", data.signal);
+              });
+
+
+        });
+
+
+/*
 io.on('connection', (socket) => {
 
+    console.log("connected");
+      socket.emit('meReg', socket.id );
 
-  console.log("connected");
-    socket.emit('meReg', socket.id );
+      socket.on('disconnect', () => {
+          console.log("dis");
+          socket.broadcast.emit("callendedReg");
 
-    socket.on('disconnect', () => {
-        console.log("dis");
-        socket.broadcast.emit("callendedReg");
+      });
 
-    });
+      socket.on("calluserReg", ({ userToCall, signalData, from, callerName}) => {
+          io.to(userToCall).emit("calluserReg", {signal: signalData, from, callerName});
+      });
 
-    socket.on("calluserReg", ({ userToCall, signalData, from, name}) => {
-        io.to(userToCall).emit("calluserReg", {signal: signalData, from, name});
-    });
+      socket.on("answercallReg", (data) => {
+          io.to(data.to).emit("callacceptedReg", data.signal);
+      });
 
-    socket.on("answercallReg", (data) => {
-        io.to(data.to).emit("callacceptedReg", data.signal);
-    });
 
 
 });
 
-
+*/
 
 const port = process.env.PORT || 8000;
 

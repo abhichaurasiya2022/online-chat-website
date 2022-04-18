@@ -36,6 +36,10 @@ exports.test = async (req, res) => {
 
 }
 
+exports.gethello= async (req, res) => {
+  console.log("Hello");
+  return res.send("Hello");
+}
 
 exports.getId = async (req, res) => {
 
