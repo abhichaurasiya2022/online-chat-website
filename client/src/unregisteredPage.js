@@ -112,7 +112,7 @@ const getReset = () =>{
 
   useEffect(() => {
     initVideo();
-    socket.current = io.connect("/unreg");
+    socket.current = io.connect("/");
 
     window.onbeforeunload = (event) => {
       if (myPeer.current) {
