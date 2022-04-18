@@ -33,7 +33,7 @@ const sendOtp = () =>{
     <input type="password" placeholder="Repeat Password" name="psw" className={Styles.InputField} required></input>
 
 
-    <Link to="/signup" ><button type="button" className={Styles.Button_SignUp}>Sign Up</button></Link>
+    <Link to="/login" ><button type="button" className={Styles.Button_SignUp}>Login</button></Link>
 
     <button type="submit" className={Styles.Button_Changepsw}>Change Password</button>
 
