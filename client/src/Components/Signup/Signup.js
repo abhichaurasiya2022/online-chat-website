@@ -30,7 +30,7 @@ const Signup = () => {
 
       <div className={Styles.Body}>
 
-      
+            <div className={Styles.Form}>
 
            <div className={Styles.Title}>Sign Up</div>
 
@@ -52,7 +52,7 @@ const Signup = () => {
               Sign Up
          </button>
 
-
+</div>
 
              </div>
     );
