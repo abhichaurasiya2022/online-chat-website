@@ -1,12 +1,18 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {useCookies, removeCookie} from 'react-cookie';
 import VideoPlayer from "./Components/Videoplayer/VideoPlayer";
+import Styles from './dashboard.module.scss';
 import jwt from 'jsonwebtoken';
+import {
+    Button, Modal, ModalFooter,
+    ModalHeader, ModalBody
+} from "reactstrap"
 import { SocketContext } from "./Components/SocketContext";
 import {useBeforeunload} from "react-beforeunload";
 import dotenv from 'dotenv';
 import Axios from 'axios';
 import Login from './login';
+
 import {
   FaPhotoVideo,
   FaMicrophone,
@@ -18,7 +24,8 @@ import {
   FaCompressArrowsAlt,
   FaLaptop,
 } from "react-icons/fa";
-
+import { VscCallIncoming, } from "react-icons/vsc";
+import { ImPhoneHangUp, ImPhone } from "react-icons/im";
 const Dashboard = () => {
 
     useBeforeunload((event) => {
@@ -45,7 +52,10 @@ const Dashboard = () => {
     let titties={};
     let tittie=[];
 
+    const [modal, setModal] = React.useState(false);
 
+     // Toggle for Modal
+     const toggle = () => setModal(!modal);
 
     const Logout = () => {
       removeCookie('jwt');
@@ -136,9 +146,31 @@ const Dashboard = () => {
     return (
     <>
       {isAuth && (
-        <>
+        <div className={Styles.videoPlayer}>
+        <VideoPlayer />
+        </div>
+      )}
 
-        <h4>{name}</h4>
+      {!isAuth && (
+        <>
+        </>
+      )}
+
+
+
+      {titties && (
+          <div className={Styles.friendList}>
+          <div className={Styles.userName}>{name}</div>
+
+          <button className={Styles.buttonLogout}
+            onClick={() => {Logout()}}
+            >
+              Log out
+          </button>
+
+        {abc()}
+              {isAuth && (
+                <>
         <input
           type="text"
           placeholder="Search Name"
@@ -155,52 +187,37 @@ const Dashboard = () => {
         </input>
         <button
           onClick={() => {SearchUser()}}
+          className={Styles.searchButton}
           >
             Search
         </button>
-        <button
-          onClick={() => {Logout()}}
-          >
-            Log out
-        </button>
-
-        <VideoPlayer />
         </>
-      )}
-
-      {!isAuth && (
-        <>
-        </>
-      )}
-
-      {searchResults.name && (
-        <>
-        <table>
-          <tr>
-            <td>{searchResults.name}</td>
-            <td>{searchResults.user_id}</td>
-            <td>
-            <button
-              onClick={() => {AddFriend()}}
-              >
-                Add Friend
-            </button>
-            </td>
-          </tr>
-        </table>
-        </>
-      )}
-
-      {titties && (
-        <>
-        <h1>hello</h1>
-        {abc()}
-
+  )}
+        {searchResults.name && (
+          <>
+          <div className={Styles.searchResult}>
+          <table>
+            <tr>
+              <td>{searchResults.name}</td>
+              <td>{searchResults.user_id}</td>
+              <td>
+              <button
+                onClick={() => {AddFriend()}}
+                >
+                  Add Friend
+              </button>
+              </td>
+            </tr>
+          </table>
+          </div>
+          </>
+        )}
           <table>
           <tbody>
             <tr>
               <th>Name</th>
               <th>User ID</th>
+                  <th>Call</th>
             </tr>
 
             {idfriend.map((e, key) => {
@@ -209,43 +226,46 @@ const Dashboard = () => {
                   <tr>
                     <td>{namefriend[key]}</td>
                     <td>{idfriend[key]}</td>
-                    <button
+                   <td> <button
                       onClick = {()=> {callFriend(namefriend[key], idfriend[key])}}
                       >
                         call
                     </button>
+                    </td>
                   </tr>
                 </>
               );
             })}
           </tbody>
         </table>
-        </>
+        </div>
       )}
 
-      {callAccepted && !callEnded ? (
+      {callAccepted && (
+                <div className='Styles.hangUp'>
                                       <button
                                       onClick={leaveCall}
 
                                       >
                                           Hang Up
                                       </button>
-                                  ) : (
-                                      <button
+</div>
+) }
 
-                                      >
-                                          Call
-                                      </button>
-          )}
-
-          {call.isReceivedCall && !callAccepted && (
-                <div>
-                    <h1>{call.callerName} is calling: </h1>
-                    <button
+          {1 && !callAccepted && (
+                <div className={Styles.notification}>
+                    <h1>{call.callerName}Abhishek is calling: </h1>
+                 { /*  <button
                      onClick={answerCall}
                       >
                         Answer
-                    </button>
+                    </button>*/}
+            <span className={Styles.iconContainerDecline} onClick={() => answerCall()}>
+              <ImPhoneHangUp className={Styles.iconDecline} alt="Decline call" />
+            </span>
+            <span className={Styles.iconContainerAccept} onClick={() => answerCall()}>
+              <ImPhone className={Styles.iconAccept} alt="Accept call" />
+            </span>
                 </div>
             )}
 

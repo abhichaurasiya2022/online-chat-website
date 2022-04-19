@@ -1,0 +1,36 @@
+.friendList{
+
+  position: fixed;
+  width: 20vw;
+  left: 80vw;
+  top: 0;
+  height: 100vh;
+  border: 1px solid blue;
+  .userName, .buttonLogout{
+    display: inline;
+    height: 5vh;
+    margin-left: 2.25vw;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  /* Zebra striping */
+/*  tr:nth-of-type(odd) {
+    background: #eee;
+  }
+  */
+  th {
+    background: #333;
+    color: white;
+    font-weight: bold;
+  }
+
+  td,
+  th {
+    padding: 6px;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+}

@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import {useCookies, removeCookie} from 'react-cookie';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-
+import Styles from './VideoPlayer.module.scss';
 import { SocketContext } from "../SocketContext";
 
 
@@ -23,12 +23,13 @@ const VideoPlayer = () => {
 
     }, []);
     return (
-        <div>
+        <div className={Styles.videoContainer}>
             {/* Our own Video */}
+            <div className={Styles.myVideo}>
             {stream && (
                     <div>
                         <div >
-                             <h3 >{callerName || 'Name'}</h3>
+                             {/*<h3 >{callerName || 'Name'}</h3>*/}
                              <video
                                playsInline
                                muted
@@ -38,8 +39,9 @@ const VideoPlayer = () => {
                          </div>
                      </div>
               )  }
-
+              </div>
             {/*user video */}
+                        <div className={Styles.userVideo}>
             {callAccepted && !callEnded && (
                     <div>
                         <div >
@@ -49,7 +51,7 @@ const VideoPlayer = () => {
                     </div>
 
             )  }
-
+            </div>
         </div>
     );
 }

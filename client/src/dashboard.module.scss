@@ -1,8 +1,9 @@
+@import './variables.scss';
 .friendList{
 
   position: fixed;
-  width: 15vw;
-  left: 85vw;
+  width: 30vw;
+  left: 70vw;
   top: 0;
   height: 100vh;
   border: 1px solid blue;
@@ -11,5 +12,112 @@
     height: 5vh;
     margin-left: 2.25vw;
   }
+  input{
+    clear: both;
+    display: inline;
+    width: 34%;
+  }
+.searchButton{
+  width: 26%;
+}
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  /* Zebra striping */
+/*  tr:nth-of-type(odd) {
+    background: #eee;
+  }
+  */
+  th {
+    background: #333;
+    color: white;
+    font-weight: bold;
+  }
+
+  td,
+  th {
+    padding: 6px;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+}
+.searchResult{
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  /* Zebra striping */
+/*  tr:nth-of-type(odd) {
+    background: #eee;
+  }
+  */
+  th {
+    background: #333;
+    color: white;
+    font-weight: bold;
+  }
+
+  td,
+  th {
+    padding: 6px;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+  button{
+    width: auto;
+  }
+}
+.videoPlayer{
+  position: fixed;
+  top: 0;
+
+  width: 25vw;
+}
+.notification{
+  position: fixed;
+  left: 80vw;
+  background-color: $primary-color;
+  top: 70vh;
+  width: 20vw;
+  height: 30vh;
+  border: 1px solid red;
+  h1{
+    font-size: 1.80vw;
+  }
+}
+.iconContainerDecline, .iconContainerAccept {
+  position: relative;
+  top: 25%;
+  left: 2%;
+  margin-left: 20%;
+  padding:  5%;
+  border-radius: 50%;
+  border-width: 4px;
+  border-style: solid;
+  border-color: $background-color;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  background-color: $background-color;
+  box-shadow: $lift-shadow;
+  transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   
+}
+.iconContainerDecline{
+  .iconDecline{
+    color: rgb(255, 0, 0);
+    font-size: 20px;
+  }
+}
+.iconContainerAccept {
+  .iconAccept {
+    color: rgb(0, 255, 0);
+    font-size: 20px;
+  }
+}
+.iconContainerDecline:hover, .iconContainerAccept:hover {
+  background-color: $button-hover-color;
 }

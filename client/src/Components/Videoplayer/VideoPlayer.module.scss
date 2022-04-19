@@ -1,0 +1,31 @@
+/*.videoPlayer, .userVideo, .myVideo{
+  position: fixed;
+  border: 1px solid red;
+  width: 20vw;
+}*/
+.videoContainer {
+//  display: none;
+  width: 25vw;
+  position: absolute;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 1);
+  height: calc(65%);
+}
+.myVideo, .userVideo {
+  video{
+    position: fixed;
+  //top: calc(65.20%);
+  right: default;
+  width: 25vw;
+  height: calc(30%);
+  z-index: default;}
+}
+.myVideo {
+  video{
+    position: fixed;
+  top: calc(65.20%);
+  right: default;
+  width: 25vw;
+  height: calc(30%);
+  z-index: default;}
+}
