@@ -36,10 +36,7 @@ exports.test = async (req, res) => {
 
 }
 
-exports.gethello= async (req, res) => {
-  console.log("Hello");
-  return res.send("Hello");
-}
+
 
 exports.getId = async (req, res) => {
 
@@ -185,9 +182,20 @@ exports.dashboard = async (req, res) => {
 
 }
 
+let getRandomUserId = function() {
+  return Math.floor(Math.random() * (9999999 - 1000) + 1000);
+}
+
+
+exports.gethello= async (req, res) => {
+  const iids = getRandomUserId();
+  console.log(iids);
+  return res.send("iids:" + iids);
+}
+
 exports.signup = async (req, res) => {
   const {name, email, password} = req.body;
-  const user_id = "N/A";
+  const user_id = getRandomUserId();
   const gender = "N/A";
   const day=00;
   const month=00;
@@ -202,7 +210,7 @@ exports.signup = async (req, res) => {
         }
 
         if(results.length > 0){
-            return res.send("Email Already In Use");
+            return res.send("401");
         }
 
       /*  else if( password == passwordConfirm ){
@@ -221,7 +229,7 @@ exports.signup = async (req, res) => {
                 console.log(error);
             } else {
                 console.log(results);
-                return res.send("success");
+                return res.send("200");
             }
 
         });
@@ -236,14 +244,17 @@ exports.signin = async (req, res) => {
         const { email, password } = req.body;
 
         if( !email || !password ) {
-            return res.status(400).send("enter email/password");
+            return res.send("400");
         }
 
 
         db.query('SELECT * FROM ocw_users WHERE email = ?', [email], async (error, results) => {
             console.log(results);
-            if( !results || !(await bcrypt.compare(password, results[0].password))){
-                return res.status(401).send("wrong email/password");
+            if (results.length>0) {
+              console.log(password);
+              console.log( await bcrypt.compare(password, results[0].password));
+              if( !results || !(await bcrypt.compare(password, results[0].password))){
+                return res.send("401");
             } else {
                 const emailid = results[0].email;
 
@@ -262,10 +273,14 @@ exports.signin = async (req, res) => {
 
             //  res.cookie('jwt', token, cookieOptions);
 
-              return res.status(200).send(token)
+              return res.status(200).send({"token": token, "status": "200"})
 
 
             }
+          }  else  {
+            console.log("from here");
+              return res.send("401");
+          }
 
         })
 

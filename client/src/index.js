@@ -8,6 +8,7 @@ import Login from './login';
 import Signup from './signup';
 import Forgot from './forgot';
 import App from './App';
+import NotFoundPage from './404';
 
 import Call from './call';
 import * as serviceWorker from './serviceWorker';
@@ -37,7 +38,7 @@ render (
     <Route path="signup" element={<Signup />} />
     <Route path="forgot" element={<Forgot />} />
     <Route path="call" element={<Call />} />
-
+    <Route path="*" element={<NotFoundPage />} />
 
   </Routes>
 </BrowserRouter>,

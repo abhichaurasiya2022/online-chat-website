@@ -80,9 +80,12 @@ function App() {
 
 
 const getReset = () =>{
-  socket.current.emit("resetGrid", {
-    peerId: partner,
-  });
+  if (stepNumber>0) {
+    socket.current.emit("resetGrid", {
+      peerId: partner,
+    });
+  }
+  return;
 };
 
 
@@ -248,7 +251,10 @@ const getReset = () =>{
 
       peer.on("close", () => {
         resetAppState();
-        getReset();
+
+
+
+
         setPartner("");
       });
     });
@@ -339,6 +345,10 @@ const getReset = () =>{
     setMessages([]);
     setSearchingPartner(false);
     setLoading(false);
+    setAudioMuted(false);
+    setVideoMuted(false);
+    setFullscreen(false);
+    getReset();
     initVideo();
   }
 
